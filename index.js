@@ -5,6 +5,8 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static('dist'))
+
 
 // @@@@@function that reads expenses from the database
 function readExpenses() {
@@ -47,18 +49,6 @@ function generateId() {
 
 // run this function to read expenses from the database
 let expenses = readExpenses();
-
-
-// home page
-app.get('/', (request, response) => {
-  response.send('<h1>Expenses</h1>')
-  // console log stuff about request
-  console.log('request.url: ' + request.url, '\n');
-  console.log('request.method: ' + request.method, '\n');
-  console.log('request.headers: ' + JSON.stringify(request.headers), '\n');
-  console.log('request.ip: ' + request.ip, '\n');
-})
-
 
 // get all expenses
 app.get('/api/expenses', (request, response) => {
